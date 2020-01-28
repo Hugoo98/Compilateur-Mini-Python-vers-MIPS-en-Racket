@@ -1,0 +1,264 @@
+
+
+.DATA
+f: .asciiz "\nFalse\n"
+t: .asciiz "\nTrue\n"
+newline: .asciiz "\n"
+YESSSSSSSS: .asciiz "YESSSSSSSS"
+NOOOOOOOOO: .asciiz "NOOOOOOOOO"
+PARIS: .asciiz "PARIS"
+a: .word 8
+b: .word 3
+n: .asciiz "\nError: le nom entré est nom défini\n"
+n: .asciiz "\nError: le nom entré est nom défini\n"
+deux: .asciiz "deux"
+OUIIIIIIIIIIIIIIIII: .asciiz "OUIIIIIIIIIIIIIIIII"
+NONNNNNNNNNNNNNNNNN: .asciiz "NONNNNNNNNNNNNNNNNN"
+n: .asciiz "\nError: le nom entré est nom défini\n"
+
+.TEXT
+.globl main
+affichage :
+lw $a0, 13
+li $v0, 1
+syscall
+j $ra
+prix :
+li $v0, 4
+la $a0, deux
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+j $ra
+condIf :
+li $v0, 1
+beq $v0, $0, Else
+li $v0, 4
+la $a0, OUIIIIIIIIIIIIIIIII
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+b Endif
+Else:
+li $v0, 4
+la $a0, NONNNNNNNNNNNNNNNNN
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+Endif:
+j $ra
+
+MAIN:
+li $t0, 4
+addi $t0, $t0, 24
+li $v0, 1
+move $a0, $t0
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 11
+addi $t0, $t0, 8
+li $v0, 1
+move $a0, $t0
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 13
+div $t0, $t1
+mflo $s0
+li $v0, 1
+add $a0, $zero, $s0
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 68
+addi $t0, $t0, 32
+li $v0, 1
+move $a0, $t0
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 0
+li $t1, 1
+xor $a0, $t0, $t1
+li $v0, 1
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 1
+li $t1, 0
+or $t2, $t0, $t1
+li $v0, 1
+move $a0, $t2
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 1
+li $t1, 0
+and $t2, $t0, $t1
+li $v0, 1
+move $a0, $t2
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 93
+li $t1, 8
+beq $t0, $t1, neqFALSE
+b neqTRUE
+neqFALSE:
+li $v0, 4
+la $a0, f
+syscall
+b neqnext
+neqTRUE:
+li $v0, 4
+la $a0, t
+syscall
+neqnext:
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 1
+li $t1, 0
+bgt $t0, $t1, supTRUE
+b supFALSE
+supTRUE:
+li $v0, 4
+la $a0, t
+syscall
+b supnext
+supFALSE:
+li $v0, 4
+la $a0, f
+syscall
+supnext:
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 8
+li $t1, 0
+beq $t0, $t1, eqTRUE
+b eqFALSE
+eqTRUE:
+li $v0, 4
+la $a0, t
+syscall
+b eqnext
+eqFALSE:
+li $v0, 4
+la $a0, f
+syscall
+eqnext:
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 19
+li $t1, 20
+blt $t0, $t1, infTRUE
+b infFALSE
+infTRUE:
+li $v0, 4
+la $a0, t
+syscall
+b infnext
+infFALSE:
+li $v0, 4
+la $a0, f
+syscall
+infnext:
+li $v0, 4
+la $a0, nl
+syscall
+li $t0, 8
+li $t1, 8
+bge $t0, $t1, seqTRUE
+b seqFALSE
+seqTRUE:
+li $v0, 4
+la $a0, t
+syscall
+b seqnext
+seqFALSE:
+li $v0, 4
+la $a0, f
+syscall
+seqnext:
+li $v0, 4
+la $a0, nl
+syscall
+li $v0, 1
+beq $v0, $0, Else
+li $v0, 4
+la $a0, YESSSSSSSS
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+b Endif
+Else:
+li $v0, 4
+la $a0, NOOOOOOOOO
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+Endif:
+li $v0, 0
+loop:
+beq $v0, $0, end_loop
+li $v0, 4
+la $a0, PARIS
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+b loop
+end_loop:
+lw $t0, a
+lw $t0, b
+li $t0, a
+div $t0, $t1
+mflo $s0
+li $v0, 1
+add $a0, $zero, $s0
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+lw $a0, a
+li $v0, 1
+syscall
+li $t0, a
+li $t1, b
+mult $t0, $t1
+mflo $s0
+li $v0, 1
+add $a0, $zero, $s0
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+lw $a0, a
+li $v0, 1
+syscall
+jal affichage
+jal prix
+jal condIf
+li $v0, 4
+la $a0, n
+syscall
+li $v0, 4
+la $a0, nl
+syscall
+li $v0, 10
+syscall
